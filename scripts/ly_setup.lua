@@ -4,6 +4,7 @@
 
 local counter = 1
 local threads = {}
+local query = require "args"
 
 -- 创建线程
 function setup(thread)
@@ -25,7 +26,9 @@ end
 -- 修改请求参数
 function request()
    requests = requests + 1
-   return wrk.request()
+   local path = query.args[math.random(0,57)]
+   return wrk.format(nil,path)
+    -- return wrk.request()
 end
 
 -- 读取结果
